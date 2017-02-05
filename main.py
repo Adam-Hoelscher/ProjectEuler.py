@@ -10,7 +10,9 @@ while (True):
     except:
         i -= 1
         break
-    startTime = time.clock()
+
     # print("Problem", i, Problems[i].Solve(), time.clock() - startTime)
 
+startTime = time.clock()
 print(Problems[i].Solve())
+print(time.clock() - startTime)
