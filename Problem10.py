@@ -1,4 +1,11 @@
 from Functions import IsPrime
 
 def Solve():
-    return(2 + sum (i for i in range(3,2000000,2) if IsPrime(i)))
+
+    max = 2000000
+    temp = {n:True for n in range(2,max)}
+    for n in temp.keys():
+        if temp[n]:
+            for k in range(2*n, max, n):
+                temp[k] = False
+    return(sum(x for x in temp if temp[x]))
