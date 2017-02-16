@@ -5,3 +5,7 @@ def Solve():
         while (p % c != 0):
             p += i
     return(p)
+
+def Solve2():
+    from Functions import LCM
+    return(LCM(range(1,21)))

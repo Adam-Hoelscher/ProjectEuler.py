@@ -58,3 +58,46 @@ def IsPanDig(x, base = 9):
     temp = [str(y) for y in str(x)]
     temp.sort()
     return(temp == [str(y) for y in range(1, base + 1)])
+
+def GCD(x, y = None):
+
+    if not hasattr(x, "__iter__"):
+        x = [x]
+    if not hasattr(y, "__iter__"):
+        y = [y]
+
+    x = [*x, *y]
+    x = [z for z in x if z != None]
+
+    def GCDpair(x,y):
+        if x == 0:
+            return(y)
+        else:
+            return(GCDpair(y % x,x))
+
+    if len(x) == 1:
+        return(x)
+    elif len(x) == 2:
+        return(GCDpair(x[0],x[1]))
+    else:
+        return(GCDpair(x[0],GCD(x[1:])))
+
+def LCM(x, y = None):
+
+    if not hasattr(x, "__iter__"):
+        x = [x]
+    if not hasattr(y, "__iter__"):
+        y = [y]
+
+    x = [*x, *y]
+    x = [z for z in x if z != None]
+
+    def LCMpair(x,y):
+        return(x // GCD(x,y) * y)
+
+    if len(x) == 1:
+        return(x)
+    elif len(x) == 2:
+        return(LCMpair(x[0],x[1]))
+    else:
+        return(LCMpair(x[0],LCM(x[1:])))
