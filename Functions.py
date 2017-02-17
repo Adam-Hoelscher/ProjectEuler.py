@@ -1,14 +1,14 @@
 def IsPrime(n):
     if n < 2:
         return(False)
-    if (n % 2 == 0):
-        return(False)
-    f = 3
+    if (n == 2):
+        return(True)
+    f = 2
     while (f < 1 + n ** .5):
         if (n % f == 0):
             return(False)
         else:
-            f += 2
+            f += 1
     return(True)
 
 def PrimeFactors(n, self = True):

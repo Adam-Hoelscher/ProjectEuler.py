@@ -9,9 +9,7 @@ def Solve():
         x = Counter([y for y in str(n)])
         return(max(x.values()) == 1)
 
-    for n in range(98):
-#    for n in range(987654322):
-        print(n, UniqDigits(n))
+    for n in range(9876 + 1):
         if UniqDigits(n):
             temp = str(n)
             m = 1

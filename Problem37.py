@@ -4,6 +4,15 @@ def Solve():
 
     TruncPrimes = []
 
+    def Possible(n):
+        digs = [int(x) for x in str(n)[1:]]
+        evens = [z for z in digs if z % 2 == 0]
+        if len(evens) > 0:
+            return(False)
+        elif 5 in digs:
+            return(False)
+        return(True)
+
     def left(n):
         while len(str(n)) > 1:
             if not IsPrime(n):
@@ -18,10 +27,12 @@ def Solve():
             n = int(str(n)[:-1])
         return(IsPrime(n))
 
-    n = 11
+    n = 21
     while len(TruncPrimes) < 11:
-        if left(n) and right(n):
-            TruncPrimes += [n]
+        if Possible(n):
+            if left(n) and right(n):
+                TruncPrimes += [n]
         n += 2
 
     return(sum(TruncPrimes))
+
