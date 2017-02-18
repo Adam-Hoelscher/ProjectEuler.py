@@ -11,7 +11,7 @@ def IsPrime(n):
             f += 1
     return(True)
 
-def PrimeFactors(n, self = True):
+def PrimeFactors(n, self = True, unique = False):
     p = n
     temp = {}
 
@@ -27,6 +27,8 @@ def PrimeFactors(n, self = True):
             temp[f] += 1
         except:
             temp[f] = 1
+            if unique:
+                break
 
     f = 3
     while (n > 1):
@@ -37,6 +39,8 @@ def PrimeFactors(n, self = True):
             except:
                 if (p != f or self):
                     temp[f] = 1
+                    if unique:
+                        break
         f += 2
 
 
@@ -54,10 +58,10 @@ def Factors(x):
         facs.append(round(sqrt(x)))
     return facs
 
-def IsPanDig(x, base = 9):
+def IsPanDig(x, end = 9, begin = 1):
     temp = [str(y) for y in str(x)]
     temp.sort()
-    return(temp == [str(y) for y in range(1, base + 1)])
+    return(temp == [str(y) for y in range(begin, end + 1)])
 
 def GCD(x, y = None):
 
