@@ -1,3 +1,6 @@
+from functools import reduce
+from operator import mul
+
 def Solve():
 
     maxProd = 0
@@ -30,19 +33,23 @@ def Solve():
     for x in range(20):
         for y in range(20):
             try:
-                right = grid[x][y] * grid[x+0][y+1] * grid[x+0][y+2] * grid[x+0][y+3]
+                right = [grid[x][y+k] for k in range(4)]
+                right = reduce(mul, right, 1)
             except:
                 right = 0
             try:
-                down  = grid[x][y] * grid[x+1][y+0] * grid[x+2][y+0] * grid[x+3][y+0]
+                down  = [grid[x+k][y] for k in range(4)]
+                down = reduce(mul, down, 1)
             except:
                 down  = 0
             try:
-                diagD = grid[x][y] * grid[x+1][y+1] * grid[x+2][y+2] * grid[x+3][y+3]
+                diagD = [grid[x+k][y+k] for k in range(4)]
+                diagD = reduce(mul, diagD, 1)
             except:
                 diagD = 0
             try:
-                diagU = grid[x][y] * grid[x+1][y-1] * grid[x+2][y-2] * grid[x+3][y-3]
+                diagU = [grid[x+k][y-k] for k in range(4)]
+                diagU = reduce(mul, diagU, 1)
             except:
                 diagU = 0
             maxProd = max(maxProd, right, down, diagU, diagD)

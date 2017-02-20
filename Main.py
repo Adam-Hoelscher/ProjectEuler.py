@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import time
 
 Problems = []
@@ -11,7 +10,12 @@ while (True):
         i -= 1
         break
 
-    # print("Problem", i, Problems[i].Solve(), time.clock() - startTime)
-
-startTime = time.clock()
-print('Problem', i, Problems[i-1].Solve(), time.clock() - startTime)
+if False:
+    begin = time.clock()
+    for i, p in enumerate(Problems):
+        startTime = time.clock()
+        print(i + 1, p.Solve(), time.clock() - startTime)
+    print(time.clock() - begin)
+else:
+    startTime = time.clock()
+    print('Problem', i, Problems[i-1].Solve(), time.clock() - startTime)

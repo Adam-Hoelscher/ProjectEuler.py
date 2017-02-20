@@ -1,6 +1,5 @@
 from Functions import PrimeFactors
 
-
 def Solve():
 
     length = 4
@@ -16,24 +15,6 @@ def Solve():
 
 
 def Solve2():
-
-    one = set(PrimeFactors(1, unique=True))
-    two = set(PrimeFactors(2, unique=True))
-    three = set(PrimeFactors(3, unique=True))
-    four = set(PrimeFactors(4, unique=True))
-
-    i = 4
-    while True:
-        i += 1
-        one = set(two)
-        two = set(three)
-        three = set(four)
-        four = set(PrimeFactors(i, unique=True))
-        if (len(one) >= 4 and len(two) >= 4 and len(three) >= 4 and len(four) >= 4):
-            return(i - 3)
-
-
-def Solve3():
     def prime_factors(n):
         """Returns all the prime factors of a positive integer"""
         factors = []
@@ -60,6 +41,3 @@ def Solve3():
         four = set(prime_factors(i))
         if (len(one) >= 4 and len(two) >= 4 and len(three) >= 4 and len(four) >= 4):
             return(i - 3)
-
-print(Solve3())
-print(Solve2())

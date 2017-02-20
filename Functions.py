@@ -1,50 +1,37 @@
 def IsPrime(n):
     if n < 2:
-        return(False)
-    if (n == 2):
-        return(True)
-    f = 2
-    while (f < 1 + n ** .5):
-        if (n % f == 0):
-            return(False)
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    f = 3
+    while f < 1 + n ** .5:
+        if n % f == 0:
+            return False
         else:
-            f += 1
-    return(True)
+            f += 2
+    return True
 
 def PrimeFactors(n, self = True, unique = False):
-    p = n
-    temp = {}
 
-    if p == 1: return(temp)
-    if p == 2:
-        temp[2] = 1
-        return(temp)
-
+    factors = dict()
     f = 2
-    while (n % f == 0):
-        n //= f
-        try:
-            temp[f] += 1
-        except:
-            temp[f] = 1
-            if unique:
-                break
-
-    f = 3
-    while (n > 1):
-        while (n % f == 0):
-            n //= f
+    while n > 1:
+        while n % f == 0:
             try:
-                temp[f] += 1
+                if not unique:
+                    factors[f] += 1
+                else:
+                    factors[f] = 1
             except:
-                if (p != f or self):
-                    temp[f] = 1
-                    if unique:
-                        break
-        f += 2
-
-
-    return(temp)
+                factors[f] = 1
+            n /= f
+        f += 1
+        if f**2 > n:
+            if n > 1 and self: factors[f] = 1
+            break
+    return factors
 
 def Factors(x):
     from math import sqrt, ceil
@@ -61,7 +48,7 @@ def Factors(x):
 def IsPanDig(x, end = 9, begin = 1):
     temp = [str(y) for y in str(x)]
     temp.sort()
-    return(temp == [str(y) for y in range(begin, end + 1)])
+    return temp == [str(y) for y in range(begin, end + 1)]
 
 def GCD(x, y = None):
 
@@ -110,11 +97,12 @@ def PrimeSieve(n):
 
     primes = dict()
     for i in range(2, n):
-        primes[i] = True
-
-    for i in primes:
-        factors = range(i, n, i)
-        for f in factors[1:]:
-            primes[f] = False
+        try:
+            primes[i]
+        except:
+            primes[i] = True
+            factors = range(i, n, i)
+            for f in factors[1:]:
+                primes[f] = False
 
     return [i for i in primes if primes[i] == True]

@@ -8,7 +8,6 @@ def Solve():
         else:
             numBig = val // coins[0]
             temp = sum([Count(val - x*coins[0], coins[1:]) for x in range(numBig+1)])
-#            temp = oCount + numBig
         return(temp)
     
     return(Count(200, coins))

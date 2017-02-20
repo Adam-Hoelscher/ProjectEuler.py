@@ -10,7 +10,6 @@ def Solve():
             f = 9 * n * d / (10 * n - d)
             if int(f) == f and f < 10:
                 f = int(f)
-                print (f, n, d, str(10 * n + f) + '/' + str(d + 10 * f), str(n) + '/' + str(d))
                 prod *= Fraction(n,d)
 
     return(prod.denominator)
