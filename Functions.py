@@ -1,37 +1,31 @@
+
+
 def IsPrime(n):
     if n < 2:
         return False
-    if n == 2:
+    elif n < 4:
         return True
-    if n % 2 == 0:
-        return False
-    f = 3
-    while f < 1 + n ** .5:
-        if n % f == 0:
+    else:
+        if not n % 2:
             return False
-        else:
-            f += 2
-    return True
+        for f in range(3, 1 + int(n ** .5), 2):
+            if not n % f:
+                return False
+        return True
 
-def PrimeFactors(n, self = True, unique = False):
 
+def PrimeFactors(n, self=True, unique=False):
     factors = dict()
-    f = 2
-    while n > 1:
-        while n % f == 0:
-            try:
-                if not unique:
-                    factors[f] += 1
-                else:
-                    factors[f] = 1
-            except:
-                factors[f] = 1
-            n /= f
-        f += 1
-        if f**2 > n:
-            if n > 1 and self: factors[f] = 1
-            break
+    for p in PrimeSieve(1 + int(n ** .5)):
+        while n % p == 0:
+            factors.setdefault(p, 0)
+            factors[p] += 1
+            n //= p
+            if unique:
+                factors[p] = 1
+    if n > 1 and self: factors[n] = 1
     return factors
+
 
 def Factors(x):
     from math import sqrt, ceil
@@ -45,13 +39,14 @@ def Factors(x):
         facs.append(round(sqrt(x)))
     return facs
 
-def IsPanDig(x, end = 9, begin = 1):
+
+def IsPanDig(x, end=9, begin=1):
     temp = [str(y) for y in str(x)]
     temp.sort()
     return temp == [str(y) for y in range(begin, end + 1)]
 
-def GCD(x, y = None):
 
+def GCD(x, y=None):
     if not hasattr(x, "__iter__"):
         x = [x]
     if not hasattr(y, "__iter__"):
@@ -60,49 +55,112 @@ def GCD(x, y = None):
     x = [*x, *y]
     x = [z for z in x if z != None]
 
-    def GCDpair(x,y):
+    def GCDpair(x, y):
         if x == 0:
-            return(y)
+            return (y)
         else:
-            return(GCDpair(y % x,x))
+            return (GCDpair(y % x, x))
 
     if len(x) == 1:
-        return(x)
+        return (x)
     elif len(x) == 2:
-        return(GCDpair(x[0],x[1]))
+        return GCDpair(x[0], x[1])
     else:
-        return(GCDpair(x[0],GCD(x[1:])))
+        return GCDpair(x[0], GCD(x[1:]))
 
-def LCM(x, y = None):
 
+def LCM(x, y=None):
     if not hasattr(x, "__iter__"):
-        x = [x]
+        x = list(x)
     if not hasattr(y, "__iter__"):
-        y = [y]
+        y = list(y)
 
     x = [*x, *y]
     x = [z for z in x if z != None]
 
-    def LCMpair(x,y):
-        return(x // GCD(x,y) * y)
+    def LCMpair(x, y):
+        return x // GCD(x, y) * y
 
     if len(x) == 1:
-        return(x)
+        return (x)
     elif len(x) == 2:
-        return(LCMpair(x[0],x[1]))
+        return LCMpair(x[0], x[1])
     else:
-        return(LCMpair(x[0],LCM(x[1:])))
+        return LCMpair(x[0], LCM(x[1:]))
 
-def PrimeSieve(n):
 
-    primes = dict()
-    for i in range(2, n):
-        try:
-            primes[i]
-        except:
-            primes[i] = True
-            factors = range(i, n, i)
-            for f in factors[1:]:
-                primes[f] = False
+def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
-    return [i for i in primes if primes[i] == True]
+    def FastPrimeSieve(valLimit, lengthLimit=float('inf')):
+        primeList = [False, False, True] + [True, False] * ((valLimit - 2) // 2)
+
+        # note that we have currently found no primes
+        currentLength = 0
+
+        for number, numberIsPrime in enumerate(primeList):
+            if currentLength == lengthLimit:
+                break
+            if numberIsPrime:
+                for k in range(number * number, valLimit, number):
+                    primeList[k] = False
+                yield number
+                currentLength += 1
+
+    def InfPrimeSieve(valLimit, lengthLimit=float('inf')):
+        """
+        algorithm is Sieve of Eratosthenes with optimization of starting at square of primes.
+        """
+
+        # dictionary holding lists of the primes that are a factor of the composite
+        composites = {}
+
+        # set the number that we are testing for primality
+        number = 2
+
+        # note that we have currently found no primes
+        currentLength = 0
+
+        while number < valLimit and currentLength < lengthLimit:
+            if number not in composites:
+                # since number is not a composite it is a new prime. mark the square of the prime,
+                # since the square is the first multiple of the prime that is not a multiple of another prime
+                yield number
+                composites[number ** 2] = [number]
+            else:
+                # number is composite. composites[number] is the list of primes that divide it.
+                # mark the *next* multiple of each prime as having that prime as a factor
+                for p in composites[number]:
+                    composites.setdefault(p + number, []).append(p)
+                del composites[number]
+
+            number += 1
+
+    if valLimit==float('inf'):
+        temp = InfPrimeSieve(valLimit, lengthLimit)
+    else:
+        temp = InfPrimeSieve(valLimit, lengthLimit)
+
+    return(temp)
+
+
+if __name__ == '__main__':
+    from time import clock
+
+    limit = 100000000
+    limit = 100000
+
+    # print(IsPrime(2))
+    # print(IsPrime2(2))
+
+    start = clock()
+    y = [IsPrime(x) for x in range(limit)]
+    # print(y)
+    print(clock() - start)
+
+    start = clock()
+    z = [IsPrime2(x) for x in range(limit)]
+    # print(z)
+    print(clock() - start)
+
+    print(y == z)
+

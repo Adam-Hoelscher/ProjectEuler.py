@@ -3,10 +3,10 @@ from Functions import PrimeSieve
 def Solve():
 
     limit = 1000000
-    primes = PrimeSieve(limit)
+    primes = [x for x in PrimeSieve(limit)]
     CircPrimes = []
 
-    for n in [x for x in primes]:
+    for n in primes:
         if n >= 10:
             digs = [int(x) for x in str(n)]
             evens = [z for z in digs if z % 2 == 0]

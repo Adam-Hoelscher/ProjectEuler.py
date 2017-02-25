@@ -15,6 +15,8 @@ def Solve():
 
     def left(n):
         while len(str(n)) > 1:
+            if n in TruncPrimes:
+                return True
             if not IsPrime(n):
                 return(False)
             n = int(str(n)[1:])
@@ -22,6 +24,8 @@ def Solve():
 
     def right(n):
         while len(str(n)) > 1:
+            if n in TruncPrimes:
+                return True
             if not IsPrime(n):
                 return(False)
             n = int(str(n)[:-1])
@@ -36,3 +40,5 @@ def Solve():
 
     return(sum(TruncPrimes))
 
+if __name__ == '__main__':
+    print(Solve())

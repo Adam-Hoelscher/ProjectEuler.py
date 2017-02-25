@@ -3,7 +3,7 @@ from Functions import PrimeSieve
 
 def Solve():
 
-    primes = PrimeSieve(18)[::-1]
+    primes = [x for x in PrimeSieve(18)][::-1]
     digits = set([str(x) for x in range(0,10)])
 
     candidates = []
@@ -24,7 +24,7 @@ def Solve():
                 if int(testStr) % p == 0:
                     setDigits = nextDig + cand[0]
                     nextCandidates.append((setDigits, digits - set([d for d in setDigits])))
-        candidates = nextCandidates
+        candidates = nextCandidates[:]
 
     # convert the candidate values from strings to numbers
     candidates = [int(x[1].pop() + x[0]) for x in candidates]
@@ -62,7 +62,7 @@ def Solve3():
     #exclude numbers starting in 0 and numbers which will not meet condition for 5
     numbers = [x for x in numbers if x[0] != 0 or x[5] != 0]
 
-    primes = PrimeSieve(18)
+    primes = [x for x in PrimeSieve(18)]
 
     temp = 0
     for n in numbers:

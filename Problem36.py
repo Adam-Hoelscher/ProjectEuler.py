@@ -9,3 +9,6 @@ def Solve():
                 temp += x
 
     return(temp)
+
+if __name__ == '__main__':
+    print(Solve())

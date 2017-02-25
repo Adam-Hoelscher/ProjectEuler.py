@@ -1,21 +1,24 @@
-import time
+from time import clock
+
+doAll = False
+doAll = True
 
 Problems = []
-i = 0
+start = 1
+i = start
 while (True):
-    i += 1
     try:
         Problems.append(__import__('Problem' + str(i)))
+        i += 1
     except:
-        i -= 1
         break
 
-if False:
-    begin = time.clock()
+if doAll:
+    begin = clock()
     for i, p in enumerate(Problems):
-        startTime = time.clock()
-        print(i + 1, p.Solve(), time.clock() - startTime)
-    print(time.clock() - begin)
+        startTime = clock()
+        print(start + i, p.Solve(), clock() - startTime)
+    print(clock() - begin)
 else:
-    startTime = time.clock()
-    print('Problem', i, Problems[i-1].Solve(), time.clock() - startTime)
+    startTime = clock()
+    print('Problem', i, Problems[i-1].Solve(), clock() - startTime)

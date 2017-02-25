@@ -3,7 +3,7 @@ from Functions import PrimeSieve
 def Solve():
 
     limit = 1000000
-    primes = PrimeSieve(limit)
+    primes = [x for x in PrimeSieve(limit)]
     maxLength = 1
     maxPrime = 2
 
