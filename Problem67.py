@@ -17,4 +17,7 @@ def Solve():
 
     return (int(data[0][0]))
 
-print(Solve())
+if __name__=='__main__':
+    from time import clock
+    s = clock()
+    print(Solve(), clock() - s)

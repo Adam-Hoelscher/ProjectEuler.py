@@ -16,6 +16,32 @@ def IsPrime(n):
 
 def PrimeFactors(n, self=True, unique=False):
     factors = dict()
+    if n < 2:
+        return factors
+    p = 2
+    while n % p == 0:
+        factors.setdefault(p, 0)
+        factors[p] += 1
+        n //= p
+        if unique:
+            factors[p] = 1
+    for p in range(3, 1 + int(n ** .5), 2):
+        while n % p == 0:
+            factors.setdefault(p, 0)
+            factors[p] += 1
+            n //= p
+            if unique:
+                factors[p] = 1
+        if n == 1:
+            break
+    if n > 1 and self: factors[n] = 1
+    return factors
+
+
+def PrimeFactors2(n, self=True, unique=False):
+    factors = dict()
+    if n < 2:
+        return factors
     for p in PrimeSieve(1 + int(n ** .5)):
         while n % p == 0:
             factors.setdefault(p, 0)
@@ -23,6 +49,8 @@ def PrimeFactors(n, self=True, unique=False):
             n //= p
             if unique:
                 factors[p] = 1
+        if n == 1:
+            break
     if n > 1 and self: factors[n] = 1
     return factors
 
@@ -92,6 +120,7 @@ def LCM(x, y=None):
 def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
     def FastPrimeSieve(valLimit, lengthLimit=float('inf')):
+        valLimit = int(valLimit)
         primeList = [False, False, True] + [True, False] * ((valLimit - 2) // 2)
 
         # note that we have currently found no primes
@@ -135,10 +164,12 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
             number += 1
 
+    '''some problem require a fixed list of primes and some require that we can extend the list at will. The fixed list
+    is much faster to generate and then be done, so use that whenever possible'''
     if valLimit==float('inf'):
         temp = InfPrimeSieve(valLimit, lengthLimit)
     else:
-        temp = InfPrimeSieve(valLimit, lengthLimit)
+        temp = FastPrimeSieve(valLimit, lengthLimit)
 
     return(temp)
 
@@ -146,21 +177,32 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 if __name__ == '__main__':
     from time import clock
 
-    limit = 100000000
-    limit = 100000
 
-    # print(IsPrime(2))
-    # print(IsPrime2(2))
+    limit = 10000
 
     start = clock()
-    y = [IsPrime(x) for x in range(limit)]
+    y = [PrimeFactors(x) for x in range(limit)]
     # print(y)
     print(clock() - start)
 
     start = clock()
-    z = [IsPrime2(x) for x in range(limit)]
+    z = [PrimeFactors2(x) for x in range(limit)]
     # print(z)
     print(clock() - start)
 
     print(y == z)
 
+
+    limit = 100000000
+
+    start = clock()
+    y = [PrimeFactors(x) for x in range(limit-1000, limit)]
+    # print(y)
+    print(clock() - start)
+
+    start = clock()
+    z = [PrimeFactors2(x) for x in range(limit-1000, limit)]
+    # print(z)
+    print(clock() - start)
+
+    print(y == z)
