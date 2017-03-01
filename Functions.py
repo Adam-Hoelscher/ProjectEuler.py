@@ -1,4 +1,4 @@
-
+from collections import Counter
 
 def IsPrime(n):
     if n < 2:
@@ -15,26 +15,27 @@ def IsPrime(n):
 
 
 def PrimeFactors(n, self=True, unique=False):
-    factors = dict()
-    if n < 2:
-        return factors
-    p = 2
-    while n % p == 0:
-        factors.setdefault(p, 0)
-        factors[p] += 1
-        n //= p
-        if unique:
-            factors[p] = 1
-    for p in range(3, 1 + int(n ** .5), 2):
+
+    factors = []
+
+    if n >= 2:
+        p = 2
         while n % p == 0:
-            factors.setdefault(p, 0)
-            factors[p] += 1
+            factors.append(p)
             n //= p
-            if unique:
-                factors[p] = 1
-        if n == 1:
-            break
-    if n > 1 and self: factors[n] = 1
+        for p in range(3, 1 + int(n ** .5), 2):
+            while n % p == 0:
+                factors.append(p)
+                n //= p
+            if n == 1:
+                break
+
+    if n > 1 and self: factors.append(n)
+
+    if unique:
+        factors = set(factors)
+    else:
+        factors = Counter(factors)
     return factors
 
 
