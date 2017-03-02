@@ -1,7 +1,38 @@
-from Functions import PrimeSieve, GCD, PrimeFactors
 from collections import Counter
 
+
 def Solve(limit=10**7, verbose=False):
+
+    phi = []
+    nonCoPrime = [[] for x in range(limit)]
+    for currentNumber, currentList in  enumerate(nonCoPrime):
+        if verbose: print(currentNumber)
+        if currentNumber > 1:
+            currNumberIsPrime = len(currentList)==0
+            currentList.append([currentNumber, currNumberIsPrime])
+            for ncpNumber in currentList:
+                if ncpNumber[1]:
+                    for futureNumber in range(currentNumber+ncpNumber[0], limit, ncpNumber[0]):
+                        nonCoPrime[futureNumber].append([currentNumber, currNumberIsPrime])
+        phi.append(currentNumber - len(currentList))
+
+    ratios = []
+    for ind in range(limit):
+        xSet = sorted(str(ind))
+        xPhiSet = sorted(str(phi[ind]))
+        if xSet == xPhiSet and ind > 1:
+            ratios.append(ind/phi[ind])
+        else:
+            ratios.append(float('inf'))
+
+    minRatio = min(ratios)
+    minN = ratios.index(minRatio)
+
+    print(minN, phi[minN])
+    return minN
+
+
+def Solve1(limit=10**7, verbose=False):
 
     coPrimePairs = [(1,2),(1,3)]
 
@@ -22,32 +53,10 @@ def Solve(limit=10**7, verbose=False):
     if verbose: print(coPrimePairs)
     return 0
 
-def Solve1():
 
-    limit = 10**4
+def Solve2(limit=10**7, verbose=False):
 
-    phi = []
-    nonCoPrime = [[] for x in range(limit)]
-    for currentNumber, currentList in  enumerate(nonCoPrime):
-        # print(currentNumber)
-        if currentNumber > 1:
-            currNumberIsPrime = len(currentList)==0
-            currentList.append([currentNumber, currNumberIsPrime])
-            for ncpNumber in currentList:
-                if ncpNumber[1]:
-                    for futureNumber in range(currentNumber+ncpNumber[0], limit, ncpNumber[0]):
-                        nonCoPrime[futureNumber].append([currentNumber, currNumberIsPrime])
-        phi.append(currentNumber - len(currentList))
-
-    return 0
-    return minN
-
-
-def Solve2():
-
-    limit = 10**7
-
-    minRatio = limit
+    minRatio = float('inf')
 
     primeFactors = [[] for x in range(limit)]
     for n in range(2,limit):
@@ -62,7 +71,7 @@ def Solve2():
     for n in range(limit-1, 1, -1):
         tot = phi(n)
         if Counter([x for x in str(n)]) == Counter([x for x in str(tot)]):
-            print(n)
+            if verbose: print(n)
             if n/tot < minRatio:
                 minRatio = n/tot
                 minN = n
@@ -72,8 +81,5 @@ def Solve2():
 
 if __name__=='__main__':
     import cProfile
-    cProfile.run('Solve(10**1)', sort='cumtime')
-    cProfile.run('Solve(10**2)', sort='cumtime')
-    cProfile.run('Solve(10**3)', sort='cumtime')
-    # cProfile.run('Solve(10**4)', sort='cumtime')
+    cProfile.run('print(Solve(10**4))')
     # print(Solve())
