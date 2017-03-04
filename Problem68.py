@@ -1,5 +1,5 @@
 from itertools import permutations
-    
+
 
 def Solve():
 
@@ -17,8 +17,8 @@ def Solve():
     # the first digit cannot be any higher than 1 more than the size of ring.
     for first in range(size+1,0,-1):
 
-        '''since we're searching from high to low, if we've found anything yet, then what we found
-        will be higher than anything we are yet to find'''
+        '''since we're searching from high to low, if we've found anything yet,
+        then what we found will be higher than anything we are yet to find'''
         if maxStr:
             break
 

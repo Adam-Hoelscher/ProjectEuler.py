@@ -35,8 +35,12 @@ def Solve1():
             currentList.append([currentNumber, currNumberIsPrime])
             for ncpNumber in currentList:
                 if ncpNumber[1]:
-                    for futureNumber in range(currentNumber+ncpNumber[0], limit, ncpNumber[0]):
-                        nonCoPrime[futureNumber].append([currentNumber, currNumberIsPrime])
+                    for futureNumber in \
+                            range(currentNumber+ncpNumber[0],
+                                  limit,
+                                  ncpNumber[0]):
+                        nonCoPrime[futureNumber].append(
+                            [currentNumber, currNumberIsPrime])
         phi.append(currentNumber - len(currentList))
 
     return 0
