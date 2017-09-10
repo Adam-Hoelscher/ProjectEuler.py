@@ -14,3 +14,7 @@ def Solve():
         if prime * 10 < total:
             return width + 1
         width += 2
+
+if __name__ == '__main__':
+    import cProfile
+    cProfile.run('Solve()')
