@@ -18,3 +18,7 @@ def Solve():
         h = Hex(n)
         if IsTri(h) and IsPent(h) and h != 40755:
             return(h)
+
+if __name__ == '__main__':
+    import cProfile
+    cProfile.run('Solve()')
