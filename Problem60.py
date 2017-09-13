@@ -2,9 +2,7 @@ from Functions import PrimeSieve
 from Functions import IsPrime
 
 
-def Solve():
-
-    target = 5
+def Solve(target = 5):
 
     sieve = PrimeSieve(float('inf'))
 
@@ -84,64 +82,10 @@ def Solve1():
         primeIndex += 1
 
 
-def Solve2():
-    from Functions import PrimeSieve
-    from Functions import IsPrime as is_prime
-    from time import clock
-
-    def Cat(a, b):
-        return int(str(a) + str(b))
-
-    def PrimePairSet(set):
-        a = set[0]
-        b = set[1]
-        if not is_prime(Cat(a, b)):
-            return False
-        if not is_prime(Cat(b, a)):
-            return False
-
-        return True
-
-    # Section 1
-    tick = clock()
-    sieve = PrimeSieve(10 ** 4)
-    primes = [i for i in sieve]
-    tock = clock()
-    print("Primes prepared in {} seconds.".format(tock - tick))
-
-    # Section 2
-    tick = clock()
-    candidates = []
-    for i, a in enumerate(primes):
-        candidates.append([])
-        for j, b in enumerate(primes[i + 1:]):
-            if PrimePairSet([a, b]):
-                candidates[i].append(b)
-    tock = clock()
-    print("Prime pairs found in {} seconds.".format(tock - tick))
-
-    # Section 3
-    tick = clock()
-    for i, a_pairs in enumerate(candidates):
-        a = primes[i]
-        for b in a_pairs:
-            b_pairs = candidates[primes.index(b)]
-            for c in b_pairs:
-                if c in a_pairs:
-                    c_pairs = candidates[primes.index(c)]
-                    for d in c_pairs:
-                        if d in a_pairs and d in b_pairs:
-                            d_pairs = candidates[primes.index(d)]
-                            for e in d_pairs:
-                                if e in a_pairs and e in b_pairs and e in c_pairs:
-                                    print([a, b, c, d, e], sum([a, b, c, d, e]))
-    tock = clock()
-    print("Solution found in {} seconds.".format(tock - tick))
-
 if __name__ == '__main__':
 
     import cProfile
     cProfile.run('print(Solve())',  sort = 'cumtime')
-    cProfile.run('print(Solve1())', sort = 'cumtime')
-    cProfile.run('print(Solve2())', sort = 'cumtime')
+    # cProfile.run('print(Solve1())', sort = 'cumtime')
+    # cProfile.run('print(Solve2())', sort = 'cumtime')
 
