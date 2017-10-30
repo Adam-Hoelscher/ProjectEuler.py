@@ -21,7 +21,7 @@ def Solve(to = 10**6):
         return(temp)
 
     temp = [FindLength(x) for x in range(1, to, 2)]
-    return(range(1, to, 2)[temp.index(max(temp))])
+    return(2*temp.index(max(temp))+1)
 
 # def Solve(to = 10**6):
 #
@@ -55,5 +55,5 @@ def Solve(to = 10**6):
 
 if __name__ == '__main__':
     import cProfile
-    print(Solve())
-    # cProfile.run('print(Solve(100))')
+    # print(Solve())
+    cProfile.run('print(Solve())')
