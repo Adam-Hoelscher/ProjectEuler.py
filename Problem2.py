@@ -1,8 +1,11 @@
 def Solve():
     temp = 0
-    a = 1
-    f = 1
-    while (f < 4000000):
-        if (f%2 == 0): temp += f
-        f, a = f + a, f
+    fib = (1,2)
+    while (fib[1] < 4000000):
+        temp += fib[1]
+        for i in range(3):
+            fib = (fib[1], fib[0]+fib[1])
     return(temp)
+
+if __name__ == '__main__':
+    print(Solve())
