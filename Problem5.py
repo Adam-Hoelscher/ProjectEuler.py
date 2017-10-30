@@ -9,3 +9,6 @@ def Solve():
 def Solve2():
     from Functions import LCM
     return(LCM(range(1,21)))
+
+if __name__ == '__main__':
+    print(Solve())
