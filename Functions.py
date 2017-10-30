@@ -92,8 +92,6 @@ def GCD(x, y=None):
 
     if len(x) == 1:
         return (x)
-    elif len(x) == 2:
-        return GCDpair(x[0], x[1])
     else:
         return GCDpair(x[0], GCD(x[1:]))
 
@@ -112,8 +110,6 @@ def LCM(x, y=None):
 
     if len(x) == 1:
         return (x)
-    elif len(x) == 2:
-        return LCMpair(x[0], x[1])
     else:
         return LCMpair(x[0], LCM(x[1:]))
 
@@ -165,8 +161,9 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
             number += 1
 
-    '''some problem require a fixed list of primes and some require that we can extend the list at will. The fixed list
-    is much faster to generate and then be done, so use that whenever possible'''
+    '''some problems require a fixed list of primes and some require that we
+     can extend the list at will. The fixed list is much faster to generate 
+     and then be done with, so use that whenever possible'''
     if valLimit==float('inf'):
         temp = InfPrimeSieve(valLimit, lengthLimit)
     else:
