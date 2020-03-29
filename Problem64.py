@@ -27,7 +27,8 @@ def Solve():
     return sum([(findPeriod(x) % 2) for x in [n for n in range(2, limit + 1) if not (n**.5).is_integer()]])
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    print(Solve())
     from time import clock
     s = clock()
     print(Solve(), clock() - s)

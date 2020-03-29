@@ -1,6 +1,6 @@
 def Solve():
 
-    file = open('C:/ProjectEuler/p042_words.txt')
+    file = open('./data/p042_words.txt')
     words = file.read()
     file.close()
 
@@ -23,3 +23,7 @@ def Solve():
             count += 1
 
     return(count)
+
+
+if __name__ == '__main__':
+    print(Solve())

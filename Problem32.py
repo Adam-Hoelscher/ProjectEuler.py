@@ -23,3 +23,5 @@ def Solve():
     return(sum(panProds))
     
     
+if __name__ == '__main__':
+    print(Solve())

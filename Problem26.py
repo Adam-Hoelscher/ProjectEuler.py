@@ -19,3 +19,5 @@ def Solve():
     return(digits.index(max(digits))+1)
     
     
+if __name__ == '__main__':
+    print(Solve())

@@ -26,7 +26,6 @@ def Solve2():
     m = max(ratios)
     return(composites[ratios.index(m)])
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     print(Solve())
-    # import cProfile
-    # cProfile.run('Solve()')

@@ -21,7 +21,9 @@ def Solve(limit=10**7, verbose=False):
 
     return count
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
+    print(Solve())
     import cProfile
     # limit = 8
     limit = 10 ** 6

@@ -15,3 +15,7 @@ def Solve():
             )
     
     return(Counts[max(Counts.keys())])
+
+    
+if __name__ == '__main__':
+    print(Solve())

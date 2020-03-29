@@ -14,3 +14,7 @@ def Solve():
     temp = sum([x for x in range(10000) if a(x)])
 
     return(temp)
+
+
+if __name__ == '__main__':
+    print(Solve())

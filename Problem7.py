@@ -7,4 +7,7 @@ def Solve():
         test += 2
         if IsPrime(test):
             primes.append(test)
-    return(test)
+
+
+if __name__ == '__main__':
+    print(Solve())

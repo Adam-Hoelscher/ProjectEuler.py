@@ -41,3 +41,7 @@ def Solve2():
         four = set(prime_factors(i))
         if (len(one) >= 4 and len(two) >= 4 and len(three) >= 4 and len(four) >= 4):
             return(i - 3)
+
+
+if __name__ == '__main__':
+    print(Solve())

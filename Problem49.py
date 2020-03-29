@@ -11,3 +11,7 @@ def Solve():
             if IsPrime(beg) and IsPrime(then) and IsPrime(end):
                 return(int(str(beg) + str(then) + str(end)))
         beg += 2
+
+
+if __name__ == '__main__':
+    print(Solve())

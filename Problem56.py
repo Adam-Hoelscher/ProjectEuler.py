@@ -7,3 +7,7 @@ def Solve():
             maxDigitalSum = max(maxDigitalSum, z)
             
     return maxDigitalSum
+
+    
+if __name__ == '__main__':
+    print(Solve())

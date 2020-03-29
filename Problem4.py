@@ -7,4 +7,7 @@ def Solve():
                 string = str(test)
                 if (string==string[::-1]):
                     temp = test
-    return(temp)
+
+
+if __name__ == '__main__':
+    print(Solve())

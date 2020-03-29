@@ -13,3 +13,7 @@ def Solve():
             temp += i
 
     return(temp)
+
+    
+if __name__ == '__main__':
+    print(Solve())

@@ -15,6 +15,8 @@ def Solve():
             return width + 1
         width += 2
 
+
 if __name__ == '__main__':
+    print(Solve())
     import cProfile
     cProfile.run('Solve()')

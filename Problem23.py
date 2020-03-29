@@ -39,4 +39,7 @@ def Solve3():
     
     temp = [x for x in range(28123) if not IsSumOfAbundant(x)]
     return(sum(temp))
+   
                 
+if __name__ == '__main__':
+    print(Solve())

@@ -5,5 +5,5 @@ def Solve():
         if (p % f == 0):
             p = p / f
         else:
-            f += 1
-    return(f)
+if __name__ == '__main__':
+    print(Solve())

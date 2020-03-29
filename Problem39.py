@@ -12,3 +12,7 @@ def Solve():
                 counts[int(p)] += 1
 
     return(counts.most_common(1)[0][0])
+
+
+if __name__ == '__main__':
+    print(Solve())

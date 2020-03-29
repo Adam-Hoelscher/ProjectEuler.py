@@ -18,3 +18,7 @@ def Solve():
                     break
             if stop:
                 return(n)
+
+
+if __name__ == '__main__':
+    print(Solve())

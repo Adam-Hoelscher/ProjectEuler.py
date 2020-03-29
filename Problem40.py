@@ -8,3 +8,7 @@ def Solve():
     for p in range(7):
         temp *= int(digits[10**p])
     return(temp)
+
+    
+if __name__ == '__main__':
+    print(Solve())

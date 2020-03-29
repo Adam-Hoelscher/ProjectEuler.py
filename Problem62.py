@@ -17,3 +17,7 @@ def Solve():
 
         if cubeDigitCounter[cubeDigits] == target:
             return(firstCubeDict[cubeDigits])
+
+
+if __name__ == '__main__':
+    print(Solve())

@@ -14,7 +14,8 @@ def Solve(limit=10**6, verbose=False):
 
     return maxFraction.numerator
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    print(Solve())
     import cProfile
     limit = 10 ** 6
     verbose = False

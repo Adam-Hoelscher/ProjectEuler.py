@@ -214,7 +214,7 @@ def Solve4():
     return(maxD)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     from time import clock
     s = clock()
     print(0, Solve(), clock() - s)
@@ -227,3 +227,7 @@ if __name__=='__main__':
     # s = clock()
     # print(4, Solve4(), clock() - s)
     # s = clock()
+
+
+if __name__ == '__main__':
+    print(Solve())

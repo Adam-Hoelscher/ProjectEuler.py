@@ -7,3 +7,7 @@ def Solve():
             if stop: break
         if stop: break
     return(a*b*c)
+
+
+if __name__ == '__main__':
+    print(Solve())

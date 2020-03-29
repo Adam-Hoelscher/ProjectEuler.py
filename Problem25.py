@@ -8,3 +8,7 @@ def Solve():
         index += 1
         fib, prior = fib + prior, fib
     return index
+
+    
+if __name__ == '__main__':
+    print(Solve())

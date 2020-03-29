@@ -16,7 +16,8 @@ def Solve():
     return sum([int(d) for d in str(temp.numerator)])
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    print(Solve())
     from time import clock
     s = clock()
     print(Solve(), clock() - s)

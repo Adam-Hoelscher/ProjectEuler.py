@@ -11,3 +11,7 @@ def Solve():
             test = int(''.join([str(x) for x in n]))
             if IsPrime(test):
                 return(test)
+
+
+if __name__ == '__main__':
+    print(Solve())

@@ -17,7 +17,8 @@ def Solve():
         stop = countFactors > 500
     return(n)
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    print(Solve())
     from time import clock
     s = clock()
     print(Solve(),s-clock())

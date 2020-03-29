@@ -32,3 +32,7 @@ def Solve():
                 CircPrimes = CircPrimes + temp
 
     return(len(CircPrimes))
+
+
+if __name__ == '__main__':
+    print(Solve())

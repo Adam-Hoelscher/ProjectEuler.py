@@ -34,3 +34,7 @@ def Solve2():
                     pass
 
     return(prod.denominator)
+
+
+if __name__ == '__main__':
+    print(Solve())

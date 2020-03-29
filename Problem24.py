@@ -19,3 +19,7 @@ def Solve():
         d = d[:t]+d[t+1:]
     
     return (temp)
+
+
+if __name__ == '__main__':
+    print(Solve())

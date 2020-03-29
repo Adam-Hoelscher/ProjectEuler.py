@@ -57,3 +57,7 @@ if __name__ == '__main__':
     import cProfile
     # print(Solve())
     cProfile.run('print(Solve())')
+
+
+if __name__ == '__main__':
+    print(Solve())

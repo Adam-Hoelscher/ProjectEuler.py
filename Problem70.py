@@ -27,7 +27,9 @@ def Solve(limit=10**7, verbose=False):
 
     return minN
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
+    print(Solve())
     import cProfile
     limit = 10**7
     # Solve(10**3)

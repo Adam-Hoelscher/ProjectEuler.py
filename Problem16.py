@@ -3,3 +3,6 @@ def Solve():
     temp = sum([int(x) for x in str(temp)])
     return(temp)
 
+
+if __name__ == '__main__':
+    print(Solve())

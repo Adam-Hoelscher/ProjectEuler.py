@@ -55,3 +55,7 @@ def Solve():
             maxProd = max(maxProd, right, down, diagU, diagD)
 
     return(maxProd)
+
+
+if __name__ == '__main__':
+    print(Solve())

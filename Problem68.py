@@ -84,13 +84,8 @@ def Solve1():
     return maxStr
 
 
-
-# if __name__=='__main__':
-#     from time import clock
-#     s = clock()
-#     print(Solve(), clock()-s)
-
 if __name__ == '__main__':
+    print(Solve())
     import cProfile
     cProfile.run('Solve()')
     # cProfile.run('Solve1()')

@@ -103,3 +103,7 @@ def Solve():
     num = num.split('\n')
     num = [int(x) for x in num]
     return(str(sum(num))[0:10])
+
+    
+if __name__ == '__main__':
+    print(Solve())

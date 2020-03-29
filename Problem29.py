@@ -4,3 +4,7 @@ def Solve():
         for b in range(2, 101):
             j.add(a**b)
     return(len(j))
+
+    
+if __name__ == '__main__':
+    print(Solve())

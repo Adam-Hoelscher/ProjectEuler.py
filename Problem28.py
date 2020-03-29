@@ -9,3 +9,7 @@ def Solve():
         width += 2
 
     return(temp)
+
+    
+if __name__ == '__main__':
+    print(Solve())

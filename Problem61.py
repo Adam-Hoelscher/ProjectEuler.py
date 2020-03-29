@@ -37,3 +37,7 @@ def Solve():
                 return sum([x[0]['n'] for x in tree])
         else:
             tree[depth] = tree[depth][1:]
+
+
+if __name__ == '__main__':
+    print(Solve())

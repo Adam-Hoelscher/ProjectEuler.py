@@ -27,3 +27,7 @@ def Solve():
         temp += plainValue
 
     return temp
+
+
+if __name__ == '__main__':
+    print(Solve())

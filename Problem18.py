@@ -16,3 +16,7 @@ def Solve():
             data[r-1][c-1] += add
 
     return (int(data[0][0]))
+
+
+if __name__ == '__main__':
+    print(Solve())

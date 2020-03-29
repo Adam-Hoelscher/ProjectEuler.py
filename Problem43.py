@@ -76,3 +76,7 @@ def Solve3():
             temp += int(''.join([str(x) for x in n]))
 
     return(temp)
+
+    
+if __name__ == '__main__':
+    print(Solve())

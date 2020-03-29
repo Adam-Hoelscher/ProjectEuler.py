@@ -49,3 +49,7 @@ def Solve():
         words += Words(i)
 
     return(len(words))
+
+
+if __name__ == '__main__':
+    print(Solve())

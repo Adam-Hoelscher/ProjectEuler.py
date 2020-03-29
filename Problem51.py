@@ -36,3 +36,7 @@ def Solve():
                         if count == target:
                             return testValue
         length += 1
+
+
+if __name__ == '__main__':
+    print(Solve())

@@ -9,3 +9,7 @@ def Solve():
             for k in range(2*n, max, n):
                 temp[k] = False
     return(sum(x for x in temp if temp[x]))
+
+
+if __name__ == '__main__':
+    print(Solve())

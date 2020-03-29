@@ -15,3 +15,7 @@ def Solve():
             else:
                 temp[x][y] = left + top
     return(temp[x][y])
+
+
+if __name__ == '__main__':
+    print(Solve())

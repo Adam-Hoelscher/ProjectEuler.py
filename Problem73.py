@@ -43,10 +43,14 @@ def Solve2(limit=12000, verbose=False):
 
     return count
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
+    print(Solve())
+'''
     import cProfile
     limit = 12000
     limit = 8
     verbose = True
     verbose = False
     cProfile.run('print(Solve2(' + str(limit) + ',' + str(verbose) + '))')
+'''

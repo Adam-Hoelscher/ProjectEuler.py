@@ -40,5 +40,6 @@ def Solve():
 
     return(sum(TruncPrimes))
 
+
 if __name__ == '__main__':
     print(Solve())

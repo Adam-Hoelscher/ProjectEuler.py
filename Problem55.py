@@ -8,3 +8,7 @@ def Solve():
             elif i == 49:
                 count += 1
     return count
+
+    
+if __name__ == '__main__':
+    print(Solve())

@@ -11,3 +11,6 @@ def Solve():
 
     return(len(days))
 
+
+if __name__ == '__main__':
+    print(Solve())
