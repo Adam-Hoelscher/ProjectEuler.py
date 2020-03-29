@@ -9,12 +9,12 @@ def Solve(target = 5):
     def TestPair(a, b):
 
         if not IsPrime(int(str(a) + str(b))):
-            return (False)
+            return False
 
         if not IsPrime(int(str(b) + str(a))):
-            return (False)
+            return False
 
-        return(True)
+        return True
 
     # prime the data so that we exclude 2 and 5. 2 and 5 will never be part
     # of a set that meets the condition. this invalidates a target value of 1,
@@ -23,7 +23,7 @@ def Solve(target = 5):
     # primes and removed sets containing them from valid sets
     if target == 1:
         return(2)
-    primes = [sieve.__next__() for x in range(3)]
+    primes = [next(sieve) for x in range(3)]
     primes.remove(2)
     primes.remove(5)
     validSets = [{3}]
@@ -32,7 +32,7 @@ def Solve(target = 5):
     while True:
 
         # move to the next prime
-        p1 = sieve.__next__()
+        p1 = next(sieve)
 
         # make a copy so that we can loop through it and add to the original
         loopSets = validSets[:]
@@ -91,11 +91,11 @@ def Solve1(target = 5):
                 return(False)
         return(True)
 
-    [sieve.__next__() for x in range(3)]
+    [next(sieve) for x in range(3)]
     validSets = [{3}]
 
     while True:
-        p = sieve.__next__()
+        p = next(sieve)
 
         currentSets = validSets[:]
         for set in currentSets:
@@ -120,7 +120,7 @@ def Solve2():
     # this invalidates a target value of 1, but that case is trivial (it's 2). as we enter the loop, it will look like
     # we ran the loop to generate 2,3,5,7 and then dropped 2 and 5 from primes and removed sets containing them from
     # valid sets
-    primes = [sieve.__next__() for x in range(4)]
+    primes = [next(sieve) for x in range(4)]
     primes.remove(2)
     primes.remove(5)
     validSets = [{3}]
@@ -129,7 +129,7 @@ def Solve2():
     while True:
         nextPrime = primes[primeIndex]
         while nextPrime >= max(primes):
-            primes.append(sieve.__next__())
+            primes.append(next(sieve))
         nextValidSets = validSets[:]
         append = nextValidSets.append
         append({nextPrime})
