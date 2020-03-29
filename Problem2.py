@@ -1,11 +1,12 @@
 def Solve():
     temp = 0
-    fib = (1,2)
-    while (fib[1] < 4000000):
-        temp += fib[1]
+    a, b =  1, 2
+    while b < 4_000_000:
+        temp += b
         for i in range(3):
-            fib = (fib[1], fib[0]+fib[1])
-    return(temp)
+            a, b = b, a + b
+    return temp
+
 
 if __name__ == '__main__':
     print(Solve())
