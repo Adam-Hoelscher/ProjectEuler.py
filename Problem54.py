@@ -72,3 +72,7 @@ def Solve():
             pass
 
     return count
+
+
+if __name__ == '__main__':
+    print(Solve())
