@@ -1,5 +1,5 @@
 from collections import Counter
-from functools import lru_cache
+from functools import lru_cache, reduce
 
 
 @lru_cache(None)
@@ -73,49 +73,46 @@ def Factors(x):
 
 @lru_cache(None)
 def IsPanDig(x, end=9, begin=1):
-    temp = [str(y) for y in str(x)]
+    temp = list(str(x))
     temp.sort()
     return temp == [str(y) for y in range(begin, end + 1)]
 
-
 def GCD(x, y=None):
-    if not hasattr(x, "__iter__"):
-        x = [x]
-    if not hasattr(y, "__iter__"):
-        y = [y]
 
-    x = [*x, *y]
-    x = [z for z in x if z != None]
+    numbers = set()
+
+    for i in [x, y]:
+        if hasattr(x, "__iter__"):
+            numbers.update(i)
+        else:
+            numbers.update([i])
+
+    numbers = set(filter(bool, numbers))
 
     def GCDpair(x, y):
         if x == 0:
-            return (y)
+            return y
         else:
-            return (GCDpair(y % x, x))
+            return GCDpair(y % x, x)
 
-    if len(x) == 1:
-        return (x)
-    else:
-        return GCDpair(x[0], GCD(x[1:]))
-
+    return reduce(GCDpair, numbers)
 
 def LCM(x, y=None):
-    if not hasattr(x, "__iter__"):
-        x = list(x)
-    if not hasattr(y, "__iter__"):
-        y = list(y)
 
-    x = [*x, *y]
-    x = [z for z in x if z != None]
+    numbers = set()
+
+    for i in [x, y]:
+        if hasattr(x, "__iter__"):
+            numbers.update(i)
+        else:
+            numbers.update([i])
+
+    numbers = set(filter(bool, numbers))
 
     def LCMpair(x, y):
         return x // GCD(x, y) * y
 
-    if len(x) == 1:
-        return (x)
-    else:
-        return LCMpair(x[0], LCM(x[1:]))
-
+    return reduce(LCMpair, x)
 
 def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
@@ -135,7 +132,7 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
                 yield number
                 currentLength += 1
 
-    def InfPrimeSieve(valLimit, lengthLimit=float('inf')):
+    def InfPrimeSieve(lengthLimit=float('inf')):
         """
         algorithm is Sieve of Eratosthenes with optimization of starting at
         square of primes.
@@ -171,11 +168,11 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
     '''
     some problems require a fixed list of primes and some require that we
-     can extend the list at will. The fixed list is much faster to generate 
+    can extend the list at will. The fixed list is much faster to generate 
     and then be done with, so use that whenever possible
     '''
     if valLimit==float('inf'):
-        temp = InfPrimeSieve(valLimit, lengthLimit)
+        temp = InfPrimeSieve(lengthLimit)
     else:
         temp = FastPrimeSieve(valLimit, lengthLimit)
 
