@@ -137,7 +137,8 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
     def InfPrimeSieve(valLimit, lengthLimit=float('inf')):
         """
-        algorithm is Sieve of Eratosthenes with optimization of starting at square of primes.
+        algorithm is Sieve of Eratosthenes with optimization of starting at
+        square of primes.
         """
 
         # dictionary holding lists of the primes that are a factor of the composite
@@ -151,22 +152,28 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 
         while number < valLimit and currentLength < lengthLimit:
             if number not in composites:
-                # since number is not a composite it is a new prime. mark the square of the prime,
-                # since the square is the first multiple of the prime that is not a multiple of another prime
+                '''
+                since number is not a composite it is a new prime. mark the
+                square of the prime, since the square is the first multiple of
+                the prime that is not a multiple of another prime
+                '''
                 yield number
                 composites[number ** 2] = [number]
             else:
-                # number is composite. composites[number] is the list of primes that divide it.
-                # mark the *next* multiple of each prime as having that prime as a factor
+                '''number is composite. composites[number] is the list of primes
+                that divide it. mark the *next* multiple of each prime as having
+                that prime as a factor'''
                 for p in composites[number]:
                     composites.setdefault(p + number, []).append(p)
                 del composites[number]
 
             number += 1
 
-    '''some problems require a fixed list of primes and some require that we
+    '''
+    some problems require a fixed list of primes and some require that we
      can extend the list at will. The fixed list is much faster to generate 
-     and then be done with, so use that whenever possible'''
+    and then be done with, so use that whenever possible
+    '''
     if valLimit==float('inf'):
         temp = InfPrimeSieve(valLimit, lengthLimit)
     else:
