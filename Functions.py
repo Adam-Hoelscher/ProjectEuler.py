@@ -185,7 +185,6 @@ def PrimeSieve(valLimit=float('inf'), lengthLimit=float('inf')):
 if __name__ == '__main__':
     from time import clock
 
-
     limit = 10000
 
     start = clock()
@@ -199,7 +198,6 @@ if __name__ == '__main__':
     print(clock() - start)
 
     print(y == z)
-
 
     limit = 100000000
 
