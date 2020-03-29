@@ -1,5 +1,8 @@
 from collections import Counter
+from functools import lru_cache
 
+
+@lru_cache(None)
 def IsPrime(n):
     if n < 2:
         return False
@@ -13,7 +16,7 @@ def IsPrime(n):
                 return False
         return True
 
-
+@lru_cache(None)
 def PrimeFactors(n, self=True, unique=False):
 
     factors = []
@@ -38,7 +41,7 @@ def PrimeFactors(n, self=True, unique=False):
         factors = Counter(factors)
     return factors
 
-
+@lru_cache(None)
 def PrimeFactors2(n, self=True, unique=False):
     factors = dict()
     if n < 2:
@@ -55,7 +58,7 @@ def PrimeFactors2(n, self=True, unique=False):
     if n > 1 and self: factors[n] = 1
     return factors
 
-
+@lru_cache(None)
 def Factors(x):
     from math import sqrt, ceil
     facs = []
@@ -68,7 +71,7 @@ def Factors(x):
         facs.append(round(sqrt(x)))
     return facs
 
-
+@lru_cache(None)
 def IsPanDig(x, end=9, begin=1):
     temp = [str(y) for y in str(x)]
     temp.sort()
