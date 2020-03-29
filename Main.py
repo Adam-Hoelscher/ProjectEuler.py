@@ -1,4 +1,4 @@
-from time import clock
+from time import time
 
 doAll = False
 doAll = True
@@ -13,12 +13,15 @@ while (True):
     except:
         break
 
-if doAll:
-    begin = clock()
+def main():
+    begin = time()
     for i, p in enumerate(Problems):
-        startTime = clock()
-        print(start + i, p.Solve(), clock() - startTime)
-    print(clock() - begin)
-else:
-    startTime = clock()
-    print('Problem', i, Problems[i-1].Solve(), clock() - startTime)
+        startTime = time()
+        solution = p.Solve()
+        stopTime = time()
+        ms = 1000 * (stopTime - startTime)
+        print(start + i, f'{ms:10.3f} ms')
+    print(time() - begin)
+
+if __name__ == '__main__':
+    main()
