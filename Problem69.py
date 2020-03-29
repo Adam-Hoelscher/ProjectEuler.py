@@ -1,16 +1,14 @@
 from Functions import GCD, IsPrime, PrimeSieve
 
-def Solve():
+def Solve(limit=1_000_000):
 
-    limit = 1000000
-
-    primes = PrimeSieve()
+    prime = PrimeSieve(valLimit=limit)
     prod = 1
     while prod < limit:
-        p = primes.__next__()
+        p = next(prime)
         prod *= p
 
-    prod = prod//p
+    prod = prod // p
     return prod
 
 
