@@ -151,11 +151,10 @@ def Solve2():
 
 
 if __name__ == '__main__':
-
+    print(Solve())
     import cProfile
     for i in [4,5]:
         cProfile.run('print(Solve('+str(i)+'))',  sort = 'cumtime')
         # cProfile.run('print(Solve())',  sort = 'cumtime')
     # cProfile.run('print(Solve1())', sort = 'cumtime')
     # cProfile.run('print(Solve2())', sort = 'cumtime')
-
