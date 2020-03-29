@@ -6,11 +6,8 @@ def Solve():
     d = 2
     count = 0
 
-    for x in range(1000):
-        n0 = n
-        d0 = d
-        n = n0 + d0 * 2
-        d = n0 + d0
+    for x in range(1_000):
+        n, d = n + d * 2, n + d
         if int(log(n,10)) > int(log(d,10)):
             count += 1
 
