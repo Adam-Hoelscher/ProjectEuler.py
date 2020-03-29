@@ -51,7 +51,7 @@ def Solve():
 
         return score
 
-    file = open('C:/ProjectEuler/p054_poker.txt')
+    file = open('./data/p054_poker.txt')
     hands = file.read()
     file.close()
 

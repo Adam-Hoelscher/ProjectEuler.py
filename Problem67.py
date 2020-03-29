@@ -1,6 +1,6 @@
 def Solve():
 
-    file = open('C:/ProjectEuler/p067_triangle.txt', 'r')
+    file = open('./data/p067_triangle.txt', 'r')
     data = file.read()
     file.close()
 

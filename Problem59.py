@@ -2,7 +2,7 @@ from collections import Counter
 
 def Solve():
 
-    file = open('C:/ProjectEuler/p059_cipher.txt')
+    file = open('./data/p059_cipher.txt')
     cipherText = file.read()
     file.close()
 

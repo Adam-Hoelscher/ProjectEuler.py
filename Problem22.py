@@ -1,6 +1,6 @@
 def Solve():
 
-    file = open('C:/ProjectEuler/p022_names.txt', 'r')
+    file = open('./data/p022_names.txt', 'r')
     data = file.read()
     file.close()
 
@@ -9,7 +9,7 @@ def Solve():
     temp.sort()
     temp = [(x+1)*sum([ord(z)-64 for z in y]) for (x,y) in enumerate(temp)]
     temp = sum(temp)
-    
+
     return(temp)
 
 
