@@ -1,5 +1,6 @@
 from Functions import PrimeFactors
 
+
 def Solve():
 
     length = 4
