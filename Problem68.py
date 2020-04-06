@@ -1,91 +1,74 @@
 from itertools import permutations
 
 
-def Solve():
+def Solve(size=5):
 
-    size = 5
+    # An n-gon will have 2n nodes and n lines. When modeling n-gons we'll use
+    # a list. Positions [0 : n-1] will represent outer nodes in a clockwise 
+    # order and postiions [n : 2n-1] will reprsent inner nodes in clockwise
+    # order, with outer node i connected to inner node i+n.
 
-    maxStr = 0
+    # The n-gon will have values from 1 to 2n. We'll order these descending so
+    # that we test higher values first.
+    node_values = range(2 * size, 0, -1)
 
-    sumLines = []
-    for i in range(size):
-        sumLines.append([i, i+size, i+size+1])
-    sumLines[size-1][2] = size
+    # Make a list of all the lines that will be formed by the n-gon. Because the
+    # n-gon is cyclic, the last node of the last line is the same as the second
+    # node of the 1st line.
+    lines = [[i, i + size, (i + size + 1)] for i in range(size)]
+    lines[-1][-1] = lines[0][1]
 
-    allDigits = range(1,2*size+1)
+    # We'll need to be able to add up the nodes in a line.
+    def sum_nodes(n_gon, nodes):
+        return sum(n_gon[idx] for idx in nodes)
 
-    # the first digit cannot be any higher than 1 more than the size of ring.
-    for first in range(size+1,0,-1):
+    # Encode one line of an n-gon.
+    def stringify_line(line):
+        return ''.join(str(n_gon[position]) for position in line)
 
-        '''since we're searching from high to low, if we've found anything yet,
-        then what we found will be higher than anything we are yet to find'''
-        if maxStr:
-            break
+    # Encode an entire n-gon.
+    def stringify_n_gon(n_gon):
+        return ''.join(stringify_line(l) for l in lines)
 
-        remain = set(range(first+1, 2*size+1)) - {first}
+    # Half of the numbers are on external nodes. If the all the external numbers
+    # are from higher half, then the lowest external node is 1 more than the
+    # size of the n-gon. Because the representations start with the numerically
+    # lowest external node, the first number in the representation cannot be
+    # higher than 1 more than the size of n-gon
+    for head in range(size + 1, 0, -1):
 
-        for outerDigits in permutations(remain, size-1):
+        # Get a list of the remaining values in descending order.
+        tail = [n for n in node_values if n != head]
 
-            if not max(allDigits) in outerDigits:
-                continue
+        # Because the second number in the representation is from an inner node,
+        # we want to start by testing the highest values of that number.
+        for inner in permutations(tail, size):
 
-            for innerDigits in permutations(set(allDigits)-set(outerDigits)-{first}):
+            # The outer numbers need to be in the tail, but not in the inner
+            # set and not less than the head number. List them in descending
+            # order.
+            outer_numbers = [n for n in tail if n not in inner and not n < head]
 
-                perm = [first] + [x for x in outerDigits] + [y for y in innerDigits]
+            # Specify that we have to draw size-1 numbers from the set, because
+            # it might not be big enough to accomodate. If it is not big enough,
+            # the iterator will stop immediately and we'll move on to the next
+            # inner set.
+            for outer in permutations(outer_numbers, size - 1):
 
-                total = 0
-                found = True
-                string = ''
-                for line in sumLines:
-                    check = sum([perm[x] for x in line])
-                    if not total:
-                        total = check
-                    elif check != total:
-                        found = False
-                        break
-                    string += ''.join([str(perm[x]) for x in line])
-                if found:
-                    if int(string) > int(maxStr):
-                        # print(perm)
-                        maxStr = int(string)
+                # Build a n-gon based on the permutations we've selected.
+                n_gon = [head] + list(outer) + list(inner)
 
-    return maxStr
+                # Compute the sums of all lines in the n-gon.
+                sums = [sum_nodes(n_gon=n_gon, nodes=l) for l in lines]
 
-
-def Solve1():
-
-    '''first attempt. absolute brute force. took about 20 seconds to run.'''
-    size = 5
-
-    maxStr = '0'
-    sets = []
-    for i in range(size):
-        sets.append([i, i+size, i+size+1])
-    sets[size-1][2] = size
-    for perm in permutations(range(1,2*size+1)):
-        if min(perm[0:size]) != perm[0]:
-            continue
-        total = 0
-        found = True
-        string = ''
-        for s in sets:
-            check = sum([perm[x] for x in s])
-            if not total:
-                total = check
-            elif check != total:
-                found = False
-                break
-            string += ''.join([str(perm[x]) for x in s])
-        if found:
-            if int(string) > int(maxStr) and len(string) < 17:
-                # print(perm)
-                maxStr = string
-
-    return maxStr
+                # If there is only one unique sum then we've found a magic
+                # n-gon. Because we tested n-gons in decreasing key value order,
+                # we know that the one we found has the highest key of any magic
+                # n-gon and we can return it.
+                if len(set(sums)) == 1:
+                    magic = stringify_n_gon(n_gon)
+                    return magic
 
 
 if __name__ == '__main__':
     print(Solve())
-    import cProfile
-    cProfile.run('Solve()')
-    # cProfile.run('Solve1()')
